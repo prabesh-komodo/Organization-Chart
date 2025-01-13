@@ -91,6 +91,7 @@ class OrganizationChart {
      */
     private createNode(element: NodeData): string {
         let className = `node ${element.node_type}_node`;
+
         let nodeHTML = `<div class="${className}" id="node-${element.id}">`;
 
         if (element.node_type === 'transitional' && element.transition_content) {
@@ -133,7 +134,7 @@ class OrganizationChart {
             `;
             }
 
-            nodeHTML += `<div class="node_connector node_connector_transition-block"></div>`;
+            nodeHTML += `<div class="node_connector node_connector_transition-block ${element.transition_content && element.transition_content.transition_logic && element.transition_content.transition_logic.length < 1 ? 'node_error' : ''}"></div>`;
         }
 
         nodeHTML += `

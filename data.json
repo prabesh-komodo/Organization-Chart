@@ -19,7 +19,7 @@
                             "stage_content" : {},
                             "transition_content": {
                                 "transition_name": "Transition to Review Complete",
-                                "transition_logic": [{}]
+                                "transition_logic": []
                             },
                             "childrens": [
                                 {
@@ -29,7 +29,7 @@
                                     "stage_content" : {},
                                     "transition_content": {
                                         "transition_name": "Transition to Review Complete",
-                                        "transition_logic": [{}]
+                                        "transition_logic": []
                                     }
                                 },
                                 {
@@ -68,7 +68,7 @@
                                         "stage_content" : {},
                                         "transition_content": {
                                             "transition_name": "Transition to Review Complete",
-                                            "transition_logic": [{"name" : "dfsdf"}]
+                                            "transition_logic": []
                                         },
                                         "childrens": []
                                     }]

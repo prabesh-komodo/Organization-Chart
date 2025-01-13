@@ -157,9 +157,11 @@ body {
     border-top: 2px solid #000;
     top: -40px;
 }
+
 .transitional_node:first-child .transitional_content::before, .transitional_node:last-child .transitional_content::before{
     display: none;
 }
+
 .multi_group > .transitional_node:first-child:before{
     width: calc(50% + 1px);
     left: calc(50% - 1px);
@@ -214,3 +216,6 @@ body {
     background-color: #F3F3F3;
 }
 
+.node_error.node_connector::before{
+    border-color: red !important;
+}
