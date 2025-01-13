@@ -22,6 +22,5 @@
         ]
     },
     "dependencies": {
-        "@salesforce-ux/design-system": "^2.25.6"
     }
 }
