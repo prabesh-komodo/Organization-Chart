@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Workflow</title>
+    <link rel="stylesheet" href="/node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="canvas">
+        <button id="data-gen">Gen Data</button>
+    </div>
+    <script src="dist/app.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        let data;
+        fetch('/data.json')
+        .then(response => response.json())
+        .then(fetchedData => {
+            data = fetchedData;
+            const generateNodeContent = (node) => {
+                
+                return `
+                    
+                            
+              Prabesh
+                `;
+            };
+
+            const generateTransitionContent = (transitionContent) => {
+                return `
+                    ${transitionContent.transition_name || ''}
+                `;
+            };
+
+            const orgChart = new OrganizationChart(canvas, data, generateNodeContent, generateTransitionContent);
+
+            let dataGen = document.getElementById('data-gen');
+            dataGen.addEventListener('click', () => {
+                console.log('dfdf;');
+                console.log(orgChart.exportData());
+            });
+
+        })
+        .catch(error => {
+          console.error('Error fetching JSON:', error);
+        });
+    </script>
+</body>
+</html>
+

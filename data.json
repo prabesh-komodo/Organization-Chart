@@ -1,0 +1,83 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "stage_name": "Submit For Review",
+            "node_type": "root",
+            "stage_content" : {},
+            "childrens": [
+                {
+                    "id": 1,
+                    "stage_name": "In Review",
+                    "node_type": "initial",
+                    "stage_content" : {},
+                    "childrens": [
+                        {
+                            "id": 2,
+                            "stage_name": "Review Complete",
+                            "node_type": "transitional",
+                            "stage_content" : {},
+                            "transition_content": {
+                                "transition_name": "Transition to Review Complete",
+                                "transition_logic": [{}]
+                            },
+                            "childrens": [
+                                {
+                                    "id": 66,
+                                    "stage_name": "Somethign",
+                                    "node_type": "transitional",
+                                    "stage_content" : {},
+                                    "transition_content": {
+                                        "transition_name": "Transition to Review Complete",
+                                        "transition_logic": [{}]
+                                    }
+                                },
+                                {
+                                    "id": 55,
+                                    "stage_name": "Somethign",
+                                    "node_type": "transitional",
+                                    "stage_content" : {},
+                                    "transition_content": {
+                                        "transition_name": "Transition to Review Complete",
+                                        "transition_logic": []
+                                    }
+                                }
+                            ]
+                        },{
+                            "id": 3,
+                            "stage_name": "Review Complete Special",
+                            "node_type": "transitional",
+                            "stage_content" : {},
+                            "transition_content": {
+                                "transition_name": "Transition to Review Complete Special",
+                                "transition_logic": [{}]
+                            },
+                            "childrens": [{
+                                "id": 4,
+                                "stage_name": "New",
+                                "node_type": "transitional",
+                                "stage_content" : {},
+                                "transition_content": {
+                                    "transition_name": "Transition to Review Complete",
+                                    "transition_logic": [{"name" : "dfsdf"}]
+                                },
+                                "childrens": [{
+                                        "id": 5,
+                                        "stage_name": "below",
+                                        "node_type": "transitional",
+                                        "stage_content" : {},
+                                        "transition_content": {
+                                            "transition_name": "Transition to Review Complete",
+                                            "transition_logic": [{"name" : "dfsdf"}]
+                                        },
+                                        "childrens": []
+                                    }]
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]       
+    
+}

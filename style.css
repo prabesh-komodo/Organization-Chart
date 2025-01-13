@@ -1,0 +1,197 @@
+*{
+ margin: 0;
+ padding: 0;
+}
+
+:root{
+    --card-width: 420px;
+}
+
+body {
+    overflow: hidden;
+}
+
+#data-gen{
+    position: absolute;
+    z-index: 9999;
+    top: 20px;
+    right: 20px;
+}
+#canvas{
+    width: 100%;
+    height: 100vh;
+    background-image: radial-gradient(#dfdfdf 1px, transparent 1px);
+    background-size: 10px 10px;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    display: flex;
+}
+.contents{
+    margin: 60px auto;
+    position: absolute;
+    width: 100%;
+}
+.new_node{
+    opacity: 0.1;
+    animation: fadeIn 0.4s forwards;
+}
+.node{
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add this to your CSS file */
+.node_removing {
+    animation: fadeOut 0.1s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+.node .node_content{
+    width: var(--card-width);
+    position: relative ;
+}
+.node_connector{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    position: relative;
+}
+
+.node_connector.node_connector_transition-block{
+    min-height: 20px;
+}
+.node_connector::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0%;
+    border-left: 2px solid #000;
+    z-index: 0;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.node_connector_action{
+    position: relative;
+    z-index: 1;
+}
+
+.node_connector_action:hover button{
+    transform: scale(1.4);
+}
+
+.node_connector_action button{
+    width: 10px;
+    height: 10px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 100%;
+    transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+
+.multi_group{
+    display: flex;
+    padding-top: 40px;
+}
+
+.transitional_content{
+    position: relative;
+    width: var(--card-width);
+}
+.transitional_content.transition_error{
+    border-color: red;
+}
+.transitional_content::before{
+    position: absolute;
+    content: '';
+    width: 0%;
+    border-left: 2px solid #000;
+    top: -42px;
+    left: 50%;
+    height: 40px;
+    transform: translateX(-50%);
+}
+
+.transitional_node{
+    position: relative;
+}
+.transitional_node:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    border-top: 2px solid #000;
+    top: -40px;
+}
+.transitional_node:first-child .transitional_content::before, .transitional_node:last-child .transitional_content::before{
+    display: none;
+}
+.multi_group > .transitional_node:first-child:before{
+    width: calc(50% + 1px);
+    left: calc(50% - 1px);
+    border-left: 2px solid black;
+    height: 40px;
+    border-radius: 15px 0 0 0;
+}
+.multi_group > .transitional_node:last-child:before{
+    width: calc(50% + 1px);
+    right: calc(50% - 1px);
+    border-right: 2px solid black;
+    height: 40px;
+    border-radius: 0 15px 0 0;
+}
+/* 
+.node_group .single_node::before{
+    display: none;
+} */
+
+.transitional_node_group .node-group .single_node::before{
+    display: none !important; 
+}
+
+.single_group > .transitional_node::before{
+    display: none;
+}
+
+.multi_group .transitional_node::after{
+    position: absolute;
+    content: '';
+    width: 0px;
+    height: 40px;
+    border-left: 2px solid #000;
+    top: -40px; 
+    z-index: 0;
+}
+.node-remover{
+    z-index: 2;
+    position: relative;
+}
+
+.multi_group .transitional_node:first-child:after, .multi_group .transitional_node:last-child:after{
+    display: none;
+}
+
+.slds-icon-transition{
+    background-color: #FFC022;
+}
+
+
+.root_node > .slds-card{
+    background-color: #F3F3F3;
+}
