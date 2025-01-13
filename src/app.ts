@@ -171,7 +171,7 @@ class OrganizationChart {
         if(element.node_type === 'root' && element.childrens && element.childrens.length === 0){
             nodeHTML += `
                         <div class="node_connector_action">
-                            <button id="${element.id}" class="node_adder">
+                            <button id="${element.id}" class="node_adder" data-tooltip="Add a new workflow stage">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z" fill="#014486"/>
                                 </svg>
@@ -181,7 +181,7 @@ class OrganizationChart {
         } else if (element.node_type !== 'root') {
             nodeHTML += `
                 <div class="node_connector_action">
-                    <button id="${element.id}" class="node_adder">
+                    <button id="${element.id}" class="node_adder" data-tooltip="Add a new workflow stage">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z" fill="#014486"/>
                         </svg>
@@ -266,6 +266,12 @@ class OrganizationChart {
      * @param id - The ID of the parent node to add the new node to.
      */
     public addNode(id: string) {
+        setTimeout(() => {
+            document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
+        },1);
+
+        document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
+        
         let getData = this.findNodeById(this.data.data, parseInt(id));
         if (!getData) {
             console.error(`Node with id ${id} not found`);
@@ -320,11 +326,47 @@ class OrganizationChart {
      */
     private attachEventListeners() {
         document.querySelectorAll('.node_adder').forEach(button => {
-            button.addEventListener('click', () => this.addNode(button.id));
+            button.addEventListener('click', (event) => {
+                this.addNode(button.id);
+            });
+            button.addEventListener('mouseenter', (event) => this.showTooltip(event as MouseEvent));
+            button.addEventListener('mouseleave', (event) => this.hideTooltip(event as MouseEvent));
         });
         document.querySelectorAll('.node_remover').forEach(button => {
             button.addEventListener('click', () => this.removeNode(button.id));
         });
+    
+    }
+
+    private showTooltip(event: MouseEvent) {
+        const target = event.currentTarget as HTMLElement;
+        const tooltipText = target.getAttribute('data-tooltip');
+        if (tooltipText) {
+            let tooltip = document.createElement('div');
+            tooltip.id = `tooltip-${Date.now()}`;
+            tooltip.className = 'tooltip';
+            tooltip.innerText = tooltipText;
+            document.body.appendChild(tooltip);
+    
+            const rect = target.getBoundingClientRect();
+            tooltip.style.left = `${rect.right + window.scrollX + 10}px`;
+            tooltip.style.top = `${rect.top + window.scrollY + rect.height / 2 - tooltip.offsetHeight / 2}px`;
+    
+            tooltip.classList.add('show');
+            target.setAttribute('data-tooltip-id', tooltip.id);
+        }
+    }
+    
+    private hideTooltip(event: MouseEvent) {
+        const target = event.currentTarget as HTMLElement;
+        const tooltipId = target.getAttribute('data-tooltip-id');
+        if (tooltipId) {
+            const tooltip = document.getElementById(tooltipId);
+            if (tooltip) {
+                tooltip.remove();
+            }
+            target.removeAttribute('data-tooltip-id');
+        }
     }
 
     /**

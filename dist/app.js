@@ -58,10 +58,10 @@ var OrganizationChart = /** @class */ (function () {
         }
         nodeHTML += "\n            <article class=\"node_content slds-card\">\n                <div class=\"slds-card__header slds-grid\">\n                    <header class=\"slds-media slds-media_center slds-has-flexi-truncate\">\n                        <div class=\"slds-media__figure\">\n                            <span class=\"slds-icon_container slds-icon-standard-account\" title=\"account\">\n                                <svg class=\"slds-icon slds-icon_small\" aria-hidden=\"true\">\n                                    <use xlink:href=\"/assets/icons/standard-sprite/svg/symbols.svg#account\"></use>\n                                </svg>\n                                <span class=\"slds-assistive-text\">account</span>\n                            </span>\n                        </div>\n                        <div class=\"slds-media__body\">\n                            <h2 class=\"slds-card__header-title\">\n                                <a href=\"#\" class=\"slds-card__header-link slds-truncate\" title=\"".concat(element.stage_name, "\">\n                                    <span>").concat(element.stage_name, "</span>\n                                </a>\n                            </h2>\n                        </div>\n                        <div class=\"slds-no-flex\">\n                            ").concat(element.node_type !== 'root' ? "<button class=\"slds-button slds-button_neutral node_remover\" id=\"".concat(element.id, "\">Delete</button>") : '', "\n                        </div>\n                    </header>\n                </div>\n                <div class=\"slds-card__body slds-card__body_inner\">\n                    ").concat(this.generateNodeContent(element), "\n                </div>\n            </article>\n            <div class=\"node_connector ").concat(element.childrens && element.childrens.length > 1 ? 'actionable' : '', "\">\n        ");
         if (element.node_type === 'root' && element.childrens && element.childrens.length === 0) {
-            nodeHTML += "\n                        <div class=\"node_connector_action\">\n                            <button id=\"".concat(element.id, "\" class=\"node_adder\">\n                                <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                                    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z\" fill=\"#014486\"/>\n                                </svg>\n                            </button>\n                        </div>\n            ");
+            nodeHTML += "\n                        <div class=\"node_connector_action\">\n                            <button id=\"".concat(element.id, "\" class=\"node_adder\" data-tooltip=\"Add a new workflow stage\">\n                                <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                                    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z\" fill=\"#014486\"/>\n                                </svg>\n                            </button>\n                        </div>\n            ");
         }
         else if (element.node_type !== 'root') {
-            nodeHTML += "\n                <div class=\"node_connector_action\">\n                    <button id=\"".concat(element.id, "\" class=\"node_adder\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                            <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z\" fill=\"#014486\"/>\n                        </svg>\n                    </button>\n                </div>\n            ");
+            nodeHTML += "\n                <div class=\"node_connector_action\">\n                    <button id=\"".concat(element.id, "\" class=\"node_adder\" data-tooltip=\"Add a new workflow stage\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                            <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.23047 8.92278L14.3074 8.92278C14.5535 8.92278 14.7689 8.70739 14.7689 8.46124L14.7689 7.53816C14.7689 7.29201 14.5535 7.07662 14.3074 7.07662L9.23047 7.07662C9.04585 7.07662 8.92278 6.95355 8.92278 6.76893L8.92278 1.69201C8.92278 1.44585 8.70739 1.23047 8.46124 1.23047L7.53816 1.23047C7.29201 1.23047 7.07662 1.44585 7.07662 1.69201L7.07662 6.76893C7.07662 6.95355 6.95355 7.07662 6.76893 7.07662L1.69201 7.07662C1.44585 7.07662 1.23047 7.29201 1.23047 7.53816L1.23047 8.46124C1.23047 8.70739 1.44585 8.92278 1.69201 8.92278L6.76893 8.92278C6.95355 8.92278 7.07662 9.04585 7.07662 9.23047L7.07662 14.3074C7.07662 14.5535 7.29201 14.7689 7.53816 14.7689L8.46124 14.7689C8.70739 14.7689 8.92278 14.5535 8.92278 14.3074L8.92278 9.23047C8.92278 9.04585 9.04585 8.92278 9.23047 8.92278Z\" fill=\"#014486\"/>\n                        </svg>\n                    </button>\n                </div>\n            ");
         }
         nodeHTML += "\n            </div>\n        ";
         if (element.childrens && element.childrens.length > 0) {
@@ -136,6 +136,10 @@ var OrganizationChart = /** @class */ (function () {
      * @param id - The ID of the parent node to add the new node to.
      */
     OrganizationChart.prototype.addNode = function (id) {
+        setTimeout(function () {
+            document.querySelectorAll('.tooltip').forEach(function (tooltip) { return tooltip.remove(); });
+        }, 1);
+        document.querySelectorAll('.tooltip').forEach(function (tooltip) { return tooltip.remove(); });
         var getData = this.findNodeById(this.data.data, parseInt(id));
         if (!getData) {
             console.error("Node with id ".concat(id, " not found"));
@@ -188,11 +192,42 @@ var OrganizationChart = /** @class */ (function () {
     OrganizationChart.prototype.attachEventListeners = function () {
         var _this = this;
         document.querySelectorAll('.node_adder').forEach(function (button) {
-            button.addEventListener('click', function () { return _this.addNode(button.id); });
+            button.addEventListener('click', function (event) {
+                _this.addNode(button.id);
+            });
+            button.addEventListener('mouseenter', function (event) { return _this.showTooltip(event); });
+            button.addEventListener('mouseleave', function (event) { return _this.hideTooltip(event); });
         });
         document.querySelectorAll('.node_remover').forEach(function (button) {
             button.addEventListener('click', function () { return _this.removeNode(button.id); });
         });
+    };
+    OrganizationChart.prototype.showTooltip = function (event) {
+        var target = event.currentTarget;
+        var tooltipText = target.getAttribute('data-tooltip');
+        if (tooltipText) {
+            var tooltip = document.createElement('div');
+            tooltip.id = "tooltip-".concat(Date.now());
+            tooltip.className = 'tooltip';
+            tooltip.innerText = tooltipText;
+            document.body.appendChild(tooltip);
+            var rect = target.getBoundingClientRect();
+            tooltip.style.left = "".concat(rect.right + window.scrollX + 10, "px");
+            tooltip.style.top = "".concat(rect.top + window.scrollY + rect.height / 2 - tooltip.offsetHeight / 2, "px");
+            tooltip.classList.add('show');
+            target.setAttribute('data-tooltip-id', tooltip.id);
+        }
+    };
+    OrganizationChart.prototype.hideTooltip = function (event) {
+        var target = event.currentTarget;
+        var tooltipId = target.getAttribute('data-tooltip-id');
+        if (tooltipId) {
+            var tooltip = document.getElementById(tooltipId);
+            if (tooltip) {
+                tooltip.remove();
+            }
+            target.removeAttribute('data-tooltip-id');
+        }
     };
     /**
      * Pans the view to center on a specific node.
