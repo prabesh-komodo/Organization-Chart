@@ -46,7 +46,6 @@ class OrganizationChart {
     private maxScale: number;
     private animationTiming: number;
     private generateNodeContent: NodeContentGenerator;
-    private generateTransitionContent: TransitionContentGenerator;
 
     /**
      * Creates an instance of OrganizationChart.
@@ -69,7 +68,6 @@ class OrganizationChart {
         this.maxScale = 1;
         this.animationTiming = 400;
         this.generateNodeContent = generateNodeContent;
-        this.generateTransitionContent = generateTransitionContent;
         this.init();
     }
 
@@ -269,8 +267,6 @@ class OrganizationChart {
         setTimeout(() => {
             document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
         },1);
-
-        document.querySelectorAll('.tooltip').forEach(tooltip => tooltip.remove());
         
         let getData = this.findNodeById(this.data.data, parseInt(id));
         if (!getData) {
@@ -292,6 +288,7 @@ class OrganizationChart {
 
         if (!getData.childrens) getData.childrens = [];
         getData.childrens.push(NewData);
+
         this.buildChart();
         this.attachEventListeners();
         this.panToNode(NewData.id);
@@ -540,15 +537,6 @@ class OrganizationChart {
             }, wait);
         };
     }
-
-    // private centerContent() {
-    //     const canvasRect = this.canvas.getBoundingClientRect();
-    //     const containerRect = this.container.getBoundingClientRect();
-    //     const offsetX = (canvasRect.width - containerRect.width) / 2;
-    //     const offsetY = (canvasRect.height - containerRect.height) / 2;
-    //     this.canvas.scrollLeft = offsetX;
-    //     this.canvas.scrollTop = offsetY;
-    // }
 }
 
 // Usage example:

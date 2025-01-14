@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workflow</title>
     <link rel="stylesheet" href="./salesforce-lightning-design-system.css">
     <link rel="stylesheet" href="style.css">
@@ -21,25 +21,13 @@
         .then(fetchedData => {
             data = fetchedData;
             const generateNodeContent = (node) => {
-                
-                return `
-                    
-                            
-              Prabesh
-                `;
+                return `<div>${node.stage_name}</div>`;
             };
 
-            const generateTransitionContent = (transitionContent) => {
-                return `
-                    ${transitionContent.transition_name || ''}
-                `;
-            };
-
-            const orgChart = new OrganizationChart(canvas, data, generateNodeContent, generateTransitionContent);
+            const orgChart = new OrganizationChart(canvas, data, generateNodeContent);
 
             let dataGen = document.getElementById('data-gen');
             dataGen.addEventListener('click', () => {
-                console.log('dfdf;');
                 console.log(orgChart.exportData());
             });
 

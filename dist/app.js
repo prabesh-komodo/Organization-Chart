@@ -24,7 +24,6 @@ var OrganizationChart = /** @class */ (function () {
         this.maxScale = 1;
         this.animationTiming = 400;
         this.generateNodeContent = generateNodeContent;
-        this.generateTransitionContent = generateTransitionContent;
         this.init();
     }
     /**
@@ -139,7 +138,6 @@ var OrganizationChart = /** @class */ (function () {
         setTimeout(function () {
             document.querySelectorAll('.tooltip').forEach(function (tooltip) { return tooltip.remove(); });
         }, 1);
-        document.querySelectorAll('.tooltip').forEach(function (tooltip) { return tooltip.remove(); });
         var getData = this.findNodeById(this.data.data, parseInt(id));
         if (!getData) {
             console.error("Node with id ".concat(id, " not found"));
